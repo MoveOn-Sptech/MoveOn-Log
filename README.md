@@ -1,26 +1,17 @@
-🎉 **Bem-vindo ao {NomedoProjeto}** 🚀
+🎉 **Bem-vindo ao MoveOn Log** 🚀
 
-{Descrição}
+este é uma das funcionalidades de registro de eventos da empresa move on , desenvolvida com fins de rastreabilidade e manutenção de nossas soluções
 
 ## ℹ️ Sobre o Projeto
 
-O {NomeDOprojeto}é uma aplicação web simples que permite aos usuários criar e visualizar tarefas. Foi desenvolvido com as seguintes tecnologias:
+O MoveOn Log é uma ferramenta simples que permite que nossa equipe atue com maior segurança no desenvolvimento das nossas aplicações. Foi desenvolvido com as seguintes tecnologias:
 
-- Linguagem: Python
-- Framework: Flask
-- Banco de Dados: SQLite
-- Front-end: HTML, CSS e JavaScript
+- Linguagem: Java
+- Banco de Dados: Mysql
+- Libs: JDBC
 
-A aplicação possui as funcionalidades básicas de CRUD (Create, Read, Update, Delete) para gerenciar tarefas.
+A aplicação possui as funcionalidades básicas de logs como : info, warn, error, fatal....
 
-## 🛠️ Ferramentas Utilizadas
-
-- Python
-- Flask
-- SQLite
-- HTML
-- CSS
-- JavaScript
 
 ## 🚀 Executando o Projeto
 
@@ -29,36 +20,27 @@ Siga as instruções abaixo para executar o projeto em seu ambiente local:
 1. **Clone o repositório:**
 
    ```
-   git clone https://github.com/seu-usuario/nome-do-repositorio.git
+   git clone https://github.com/MoveOn-Sptech/MoveOn-Log.git
    ```
 
 2. **Navegue até o diretório do projeto:**
 
    ```
-   cd nome-do-repositorio
+   cd MoveOn-Log
    ```
 
 3. **Instale as dependências:**
 
    ```
-   pip install -r requirements.txt
+   mvn install
    ```
 
-4. **Execute o servidor:**
+4. **Rode a aplicação:**
 
-   ```
-   python app.py
-   ```
+   Abra sua IDE:
 
-5. **Acesse a aplicação:**
 
-   Abra o seu navegador e digite o seguinte endereço:
-
-   ```
-   http://localhost:5000
-   ```
-
-   Agora você pode começar a utilizar a aplicação, criar, visualizar, atualizar e excluir tarefas.
+   Agora você pode começar a utilizar a ferramenta e aproveitar seus benefícios.
 
 ## 📝 Contribuição
 
