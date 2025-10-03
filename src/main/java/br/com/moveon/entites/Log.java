@@ -30,24 +30,32 @@ public class Log {
         return id;
     }
 
-    public String getDescription() {
-        return description;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getTypeLog() {
         return typeLog;
     }
 
-    public Instant getCreatedAt() {
-        return createdAt;
+    public void setTypeLog(String typeLog) {
+        this.typeLog = typeLog;
+    }
+
+    public String getDescription() {
+        return description;
     }
 
     public void setDescription(String description) {
         this.description = description;
     }
 
-    public void setTypeLog(String typeLog) {
-        this.typeLog = typeLog;
+    public Instant getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Instant createdAt) {
+        this.createdAt = createdAt;
     }
 
     @Override

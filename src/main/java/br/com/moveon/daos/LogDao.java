@@ -19,7 +19,7 @@ public class LogDao {
         if (log.getId() == null) {
             this.jdbcTemplate.update(
                     """
-                            INSERT INTO logs(type_log, description, created_at)
+                            INSERT INTO logs(typeLog, description, createdAt)
                                 VALUES (?, ?, ?);
                             """,
                     log.getTypeLog(),
@@ -32,9 +32,9 @@ public class LogDao {
         this.jdbcTemplate.update(
                 """
                         UPDATE logs SET
-                            type_log =?
+                            typeLog =?
                             description = ?
-                            created_at =?
+                            createdAt =?
                         WHERE id = ?
                         """,
                 log.getTypeLog(),
@@ -45,7 +45,7 @@ public class LogDao {
     }
 
     public List<Log> getAll(){
-        return this.jdbcTemplate.query("SELECT * FROM logs ORDER BY id DESC", new LogRowMapper());
+        return this.jdbcTemplate.query("SELECT * FROM logs ORDER BY id DESC", new BeanPropertyRowMapper<>(Log.class));
     }
 
 }
