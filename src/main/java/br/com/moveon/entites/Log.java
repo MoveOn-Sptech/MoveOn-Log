@@ -1,25 +1,24 @@
 package br.com.moveon.entites;
 
-import java.time.Instant;
-import java.time.temporal.ChronoUnit;
+import java.sql.Timestamp;
 
 public class Log {
     private Long id;
     private String typeLog;
     private String description;
-    private Instant createdAt;
+    private Timestamp createdAt;
 
     public Log() {
     }
 
-    public Log(String typeLog, String description, Instant createdAt) {
+    public Log(String typeLog, String description, Timestamp createdAt) {
         this.id = null;
         this.description = description;
         this.typeLog = typeLog;
         this.createdAt = createdAt;
     }
 
-        public Log(long id, String typeLog, String description, Instant createdAt) {
+        public Log(long id, String typeLog, String description, Timestamp createdAt) {
         this.id = id;
         this.description = description;
         this.typeLog = typeLog;
@@ -30,24 +29,32 @@ public class Log {
         return id;
     }
 
-    public String getDescription() {
-        return description;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getTypeLog() {
         return typeLog;
     }
 
-    public Instant getCreatedAt() {
-        return createdAt;
+    public void setTypeLog(String typeLog) {
+        this.typeLog = typeLog;
+    }
+
+    public String getDescription() {
+        return description;
     }
 
     public void setDescription(String description) {
         this.description = description;
     }
 
-    public void setTypeLog(String typeLog) {
-        this.typeLog = typeLog;
+    public Timestamp getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Timestamp createdAt) {
+        this.createdAt = createdAt;
     }
 
     @Override

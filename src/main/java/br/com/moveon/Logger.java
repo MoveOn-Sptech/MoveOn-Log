@@ -5,6 +5,7 @@ import br.com.moveon.daos.LogDao;
 import br.com.moveon.entites.Log;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import java.sql.Timestamp;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -47,7 +48,8 @@ public class Logger {
             default -> ANSI_GREEN;
         };
 
-        Instant createdAtFormated = Instant.now().truncatedTo(ChronoUnit.MICROS);
+        Timestamp createdAtFormated = new Timestamp(System.currentTimeMillis());
+
         Log log = new Log(
                 typeLog, description, createdAtFormated
         );

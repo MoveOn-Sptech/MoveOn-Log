@@ -1,26 +1,26 @@
 package br.com.moveon;
 
-import br.com.moveon.connection.DatabaseConnection;
-import br.com.moveon.daos.LogDao;
-import br.com.moveon.daos.LogRowMapper;
 import br.com.moveon.entites.Log;
 
 import java.sql.Timestamp;
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 public class Main {
 
     public static void main(String[] args) throws InterruptedException {
         Logger logger = new Logger();
-        System.out.println(logger.title);
+
+        System.out.println(new Timestamp(System.currentTimeMillis()));
+        logger.info("henry");
+//        System.out.println(logger.title);
         List<Log> logs = logger.getLogDao().getAll();
+
 
         for (Log log : logs) {
             System.out.println(log);
         }
+
+
 //
 //        // Usuário "Joao" acessa a aplicação
 //        logger.info("Usuário 'Joao' acessou a aplicação.");
