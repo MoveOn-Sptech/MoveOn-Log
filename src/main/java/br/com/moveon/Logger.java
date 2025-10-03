@@ -1,8 +1,14 @@
 package br.com.moveon;
 
+import br.com.moveon.connection.DatabaseConnection;
+import br.com.moveon.daos.LogDao;
+import br.com.moveon.entites.Log;
+import org.springframework.jdbc.core.JdbcTemplate;
+
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 
 public class Logger {
     String version = "2.0.0";
@@ -22,53 +28,51 @@ public class Logger {
     String ANSI_RED = "\u001B[31m";
     String ANSI_GREEN = "\u001B[32m";
     String ANSI_YELLOW = "\u001B[33m";
-    String ANSI_BLUE = "\u001B[34m";
-    String ANSI_PURPLE = "\u001B[35m";
-    String ANSI_CYAN = "\u001B[36m";
-    String ANSI_WHITE = "\u001B[37m";
+
+    private LogDao logDao;
+
+    public Logger() {
+        DatabaseConnection connection = new DatabaseConnection();
+        this.logDao = new LogDao(connection.getJdbcTemplate());
+    }
 
     String create(
-            String levelLog,
+            String typeLog,
             String description
     ) {
 
-        String ANSI_COLOR = switch (levelLog) {
+        String ANSI_COLOR = switch (typeLog) {
             case "WARN" -> ANSI_YELLOW;
             case "ERROR", "FATAL" -> ANSI_RED;
             default -> ANSI_GREEN;
         };
 
-        // concateção das cores
-        levelLog = ANSI_COLOR.concat(levelLog.concat(ANSI_RESET));
+        Instant createdAtFormated = Instant.now().truncatedTo(ChronoUnit.MICROS);
+        Log log = new Log(
+                typeLog, description, createdAtFormated
+        );
+        this.logDao.save(log);
 
-        // https://medium.com/@AlexanderObregon/javas-instant-now-method-explained-5403bac7ec1e
-        String createdAtFormated = Instant.now().toString();
+        typeLog = ANSI_COLOR.concat(typeLog.concat(ANSI_RESET));
+
         String templateLog = "%s %s --- [moveon] : %s";
 
-        return templateLog.formatted(createdAtFormated, levelLog, description);
+        return templateLog.formatted(createdAtFormated, typeLog, description);
     }
 
-    void info(
-            String description
-    ) {
+    void info(String description) {
         System.out.println(create("INFO", description));
     }
 
-    void warn(
-            String description
-    ) {
+    void warn(String description) {
         System.out.println(create("WARN", description));
     }
 
-    void error(
-            String description
-    ) {
+    void error(String description) {
         System.err.println(create("ERROR", description));
     }
 
-    void fatal(
-            String description
-    ) {
+    void fatal(String description) {
         System.err.println(create("FATAL", description));
     }
 
@@ -76,5 +80,7 @@ public class Logger {
         System.out.println(title);
     }
 
-
+    public LogDao getLogDao() {
+        return logDao;
+    }
 }
