@@ -1,9 +1,17 @@
 package br.com.moveon;
 
-public class AccessApplicationExample {
+import br.com.moveon.entites.Log;
+
+import java.time.Instant;
+import java.util.List;
+
+public class Main {
 
     public static void main(String[] args) throws InterruptedException {
         Logger logger = new Logger();
+
+//        logger.info("dados coletado com sucesso");
+        logger.warn("mensagem de alerta");
 
         logger.info("Usuário 'Joao' acessou a aplicação.");
 
@@ -21,4 +29,9 @@ public class AccessApplicationExample {
 
         logger.info("Usuário 'Joao' foi desconectado da aplicação.");
     }
+
 }
+
+
+
+
