@@ -47,7 +47,7 @@ public class Logger {
             default -> ANSI_GREEN;
         };
 
-        Instant createdAtFormated = Instant.now().truncatedTo(ChronoUnit.MICROS);
+        Instant createdAtFormated = Instant.now().truncatedTo(ChronoUnit.MICROS); // 6 nano segundos
         Log log = new Log(
                 typeLog, description, createdAtFormated
         );
