@@ -1,9 +1,12 @@
 package br.com.moveon;
 
+import br.com.moveon.connection.DatabaseConnection;
+
 public class AccessApplicationExample {
 
     public static void main(String[] args) throws InterruptedException {
-        Logger logger = new Logger();
+        DatabaseConnection connection = new DatabaseConnection();
+        Logger logger = new Logger(connection.getJdbcTemplate());
 
         logger.info("Usuário 'Joao' acessou a aplicação.");
 
