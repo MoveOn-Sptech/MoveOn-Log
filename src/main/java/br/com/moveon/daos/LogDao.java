@@ -1,6 +1,5 @@
 package br.com.moveon.daos;
 
-import br.com.moveon.Logger;
 import br.com.moveon.entites.Log;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
