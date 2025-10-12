@@ -8,8 +8,6 @@ public class ETLProcessExample {
         DatabaseConnection connection = new DatabaseConnection();
         Logger logger = new Logger(connection.getJdbcTemplate());
 
-        logger.init();
-
         logger.info("Iniciando processo ETL para os dados de acidentes da base ARTESP.");
         Thread.sleep(1000);
 
