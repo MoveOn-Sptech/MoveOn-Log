@@ -3,8 +3,6 @@ package br.com.moveon;
 import br.com.moveon.connection.DatabaseConnection;
 import br.com.moveon.entites.Log;
 
-import java.time.Instant;
-import java.util.List;
 
 public class Main {
 
