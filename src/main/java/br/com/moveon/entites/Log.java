@@ -1,24 +1,24 @@
 package br.com.moveon.entites;
 
-import java.sql.Timestamp;
+import java.time.Instant;
 
 public class Log {
     private Long id;
     private String typeLog;
     private String description;
-    private Timestamp createdAt;
+    private Instant createdAt;
 
     public Log() {
     }
 
-    public Log(String typeLog, String description, Timestamp createdAt) {
+    public Log(String typeLog, String description, Instant createdAt) {
         this.id = null;
         this.description = description;
         this.typeLog = typeLog;
         this.createdAt = createdAt;
     }
 
-        public Log(long id, String typeLog, String description, Timestamp createdAt) {
+    public Log(long id, String typeLog, String description, Instant createdAt) {
         this.id = id;
         this.description = description;
         this.typeLog = typeLog;
@@ -49,16 +49,21 @@ public class Log {
         this.description = description;
     }
 
-    public Timestamp getCreatedAt() {
+    public Instant getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Timestamp createdAt) {
+    public void setCreatedAt(Instant createdAt) {
         this.createdAt = createdAt;
     }
 
     @Override
     public String toString() {
+        /*
+         * As cores ANSI em Java são uma forma de adicionar cor e
+         * formatação ao texto impresso no console ou terminal,
+         * utilizando sequências de caracteres especiais chamadas
+         * "códigos de escape ANSI".*/
 
         String ANSI_RESET = "\u001B[0m";
         String ANSI_RED = "\u001B[31m";
@@ -74,6 +79,5 @@ public class Log {
 
         String templateLog = "%s %s --- [moveon] : %s";
         return templateLog.formatted(this.createdAt, ANSI_COLOR.concat(this.typeLog).concat(ANSI_RESET), this.description);
-
     }
 }

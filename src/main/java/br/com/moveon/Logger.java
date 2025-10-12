@@ -1,14 +1,10 @@
 package br.com.moveon;
 
-import br.com.moveon.connection.DatabaseConnection;
 import br.com.moveon.daos.LogDao;
 import br.com.moveon.entites.Log;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-import java.sql.Timestamp;
 import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 
 public class Logger {
@@ -23,43 +19,23 @@ public class Logger {
             :: MoveOn Log ::                                      (%s)
             """.formatted(version);
 
-    //https://pt.wikipedia.org/wiki/ISO_8601#:~:text=A%20ISO%208601%20%C3%A9%20uma,tr%C3%AAs%20expans%C3%B5es%20mostradas%20s%C3%A3o%20v%C3%A1lidas.&text=O%20objetivo%20primordial%20da%20norma,padr%C3%B5es%20nacionais%20e%20lingu%C3%ADsticos%20existentes.
-//    DateTimeFormatter LOG_DATE_TIME_FORMATTER = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
-    String ANSI_RESET = "\u001B[0m";
-    String ANSI_RED = "\u001B[31m";
-    String ANSI_GREEN = "\u001B[32m";
-    String ANSI_YELLOW = "\u001B[33m";
-
     private LogDao logDao;
 
-    public Logger() {
-        DatabaseConnection connection = new DatabaseConnection();
-        this.logDao = new LogDao(connection.getJdbcTemplate());
+    public Logger(JdbcTemplate jdbcTemplate) {
+        this.init();
+        this.logDao = new LogDao(jdbcTemplate);
     }
 
     String create(
             String typeLog,
             String description
     ) {
-
-        String ANSI_COLOR = switch (typeLog) {
-            case "WARN" -> ANSI_YELLOW;
-            case "ERROR", "FATAL" -> ANSI_RED;
-            default -> ANSI_GREEN;
-        };
-
-        Timestamp createdAtFormated = new Timestamp(System.currentTimeMillis());
-
+        Instant createdAtFormated = Instant.now().truncatedTo(ChronoUnit.MICROS); // 6 nano segundos
         Log log = new Log(
                 typeLog, description, createdAtFormated
         );
         this.logDao.save(log);
-
-        typeLog = ANSI_COLOR.concat(typeLog.concat(ANSI_RESET));
-
-        String templateLog = "%s %s --- [moveon] : %s";
-
-        return templateLog.formatted(createdAtFormated, typeLog, description);
+        return log.toString();
     }
 
     void info(String description) {

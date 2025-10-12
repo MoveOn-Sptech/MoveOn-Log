@@ -4,24 +4,26 @@ USER moveon;
 
 CREATE TABLE logs (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    type_log VARCHAR(50),
+      typeLog VARCHAR(50),
     description TEXT,
-    created_at TIMESTAMP(6)
+    createdAt TIMESTAMP(6)
 );
 
-INSERT INTO logs (type_log, description, created_at)
+select * from logs;
+
+INSERT INTO logs (typeLog, description, createdAt)
 VALUES ('INFO', 'O serviço de processamento de pedidos foi inicializado.', NOW(6));
 
-INSERT INTO logs (type_log, description, created_at)
+INSERT INTO logs (typeLog, description, createdAt)
 VALUES ('WARN', 'A conexão com o cache externo atingiu o tempo limite.', NOW(6));
 
-INSERT INTO logs (type_log, description, created_at)
+INSERT INTO logs (typeLog, description, createdAt)
 VALUES ('ERROR', 'Exceção não tratada ao tentar calcular o frete.', NOW(6));
 
 SELECT
     id,
-    type_log,
+    typeLog,
     description,
-    created_at
+    createdAt
 FROM logs
 ORDER BY id DESC;
