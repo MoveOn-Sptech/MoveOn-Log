@@ -18,33 +18,33 @@ public class LogDao {
         if (log.getId() == null) {
             this.jdbcTemplate.update(
                     """
-                            INSERT INTO logs(typeLog, description, createdAt)
+                            INSERT INTO log(tipo, descricao, dataCriacao)
                                 VALUES (?, ?, ?);
                             """,
-                    log.getTypeLog(),
-                    log.getDescription(),
-                    log.getCreatedAt()
+                    log.getTipo(),
+                    log.getDescricao(),
+                    log.getDataCriacao()
             );
             return;
         }
 
         this.jdbcTemplate.update(
                 """
-                        UPDATE logs SET
+                        UPDATE log SET
                             typeLog =?
                             description = ?
                             createdAt =?
                         WHERE id = ?
                         """,
-                log.getTypeLog(),
-                log.getDescription(),
-                log.getCreatedAt(),
+                log.getTipo(),
+                log.getDescricao(),
+                log.getDescricao(),
                 log.getId()
         );
     }
 
     public List<Log> getAll(){
-        return this.jdbcTemplate.query("SELECT * FROM logs ORDER BY id DESC", new BeanPropertyRowMapper<>(Log.class));
+        return this.jdbcTemplate.query("SELECT * FROM log ORDER BY id DESC", new BeanPropertyRowMapper<>(Log.class));
     }
 
 }

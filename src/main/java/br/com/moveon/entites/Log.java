@@ -4,25 +4,17 @@ import java.time.Instant;
 
 public class Log {
     private Long id;
-    private String typeLog;
-    private String description;
-    private Instant createdAt;
+    private String tipo;
+    private String descricao;
+    private Instant dataCriacao;
 
     public Log() {
     }
 
-    public Log(String typeLog, String description, Instant createdAt) {
-        this.id = null;
-        this.description = description;
-        this.typeLog = typeLog;
-        this.createdAt = createdAt;
-    }
-
-    public Log(long id, String typeLog, String description, Instant createdAt) {
-        this.id = id;
-        this.description = description;
-        this.typeLog = typeLog;
-        this.createdAt = createdAt;
+    public Log(String tipo, String descricao, Instant dataCriacao) {
+        this.tipo = tipo;
+        this.descricao = descricao;
+        this.dataCriacao = dataCriacao;
     }
 
     public Long getId() {
@@ -33,28 +25,47 @@ public class Log {
         this.id = id;
     }
 
-    public String getTypeLog() {
-        return typeLog;
+    public String getTipo() {
+        return tipo;
     }
 
-    public void setTypeLog(String typeLog) {
-        this.typeLog = typeLog;
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+// O Código Java gera a mensagem com foco em:
+// 1. Dizer o que é o relatório (Header)
+// 2. Dar o resumo rápido (Section com Fields)
+// 3. Fornecer uma opção de aprofundamento (Actions)
+
+// Exemplo da estrutura visual no Slack:
+
+/*
+*Relatório de Processamento Batch - JobID: 12345* 🛑 Falha Crítica
+--------------------------------------
+*Métricas* *Detalhes*
+Transações: 50.000  Status: ❌ FALHA
+Erros: 15.000      Tempo Total: 3 min
+
+*Erros Principais:*
+• Erro de Conexão com DB (12.000 ocorrências)
+• Dados Inválidos (3.000 ocorrências)
+
+[ Botão: Ver Dashboard Completo ]  [ Botão: Acionar Suporte N2 ]
+*/
+    public String getDescricao() {
+        return descricao;
     }
 
-    public String getDescription() {
-        return description;
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public Instant getDataCriacao() {
+        return dataCriacao;
     }
 
-    public Instant getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Instant createdAt) {
-        this.createdAt = createdAt;
+    public void setDataCriacao(Instant dataCriacao) {
+        this.dataCriacao = dataCriacao;
     }
 
     @Override
@@ -70,7 +81,7 @@ public class Log {
         String ANSI_GREEN = "\u001B[32m";
         String ANSI_YELLOW = "\u001B[33m";
 
-        String ANSI_COLOR = switch (this.typeLog) {
+        String ANSI_COLOR = switch (this.tipo) {
             case "WARN" -> ANSI_YELLOW;
             case "ERROR", "FATAL" -> ANSI_RED;
             default -> ANSI_GREEN;
@@ -78,6 +89,6 @@ public class Log {
 
 
         String templateLog = "%s %s --- [moveon] : %s";
-        return templateLog.formatted(this.createdAt, ANSI_COLOR.concat(this.typeLog).concat(ANSI_RESET), this.description);
+        return templateLog.formatted(this.dataCriacao, ANSI_COLOR.concat(this.tipo).concat(ANSI_RESET), this.descricao);
     }
 }

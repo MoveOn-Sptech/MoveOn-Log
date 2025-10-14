@@ -27,31 +27,31 @@ public class Logger {
     }
 
     String create(
-            String typeLog,
-            String description
+            String tipo,
+            String descricao
     ) {
-        Instant createdAtFormated = Instant.now().truncatedTo(ChronoUnit.MICROS); // 6 nano segundos
+        Instant dataCriacao = Instant.now().truncatedTo(ChronoUnit.MICROS); // 6 nano segundos
         Log log = new Log(
-                typeLog, description, createdAtFormated
+                tipo, descricao, dataCriacao
         );
         this.logDao.save(log);
         return log.toString();
     }
 
-    void info(String description) {
-        System.out.println(create("INFO", description));
+    void info(String descricao) {
+        System.out.println(create("INFO", descricao));
     }
 
-    void warn(String description) {
-        System.out.println(create("WARN", description));
+    void warn(String descricao) {
+        System.out.println(create("WARN", descricao));
     }
 
-    void error(String description) {
-        System.err.println(create("ERROR", description));
+    void error(String descricao) {
+        System.err.println(create("ERROR", descricao));
     }
 
-    void fatal(String description) {
-        System.err.println(create("FATAL", description));
+    void fatal(String descricao) {
+        System.err.println(create("FATAL", descricao));
     }
 
     void init() {
