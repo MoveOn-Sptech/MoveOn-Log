@@ -1,13 +1,23 @@
+# 📜 MoveOn Log
 
-*Relatório de Processamento Batch - JobID: 12345* 🛑 Falha Crítica
---------------------------------------
-*Métricas* *Detalhes*
-Transações: 50.000  Status: ❌ FALHA
-Erros: 15.000      Tempo Total: 3 min
+Projeto acadêmico **MoveOn** responsável pelo registro e rastreabilidade de eventos das aplicações.
 
-*Erros Principais:*
-• Erro de Conexão com DB (12.000 ocorrências)
-• Dados Inválidos (3.000 ocorrências)
+## 🔧 Tecnologias
+- Java 21  
+- MySQL + Connector/J  
+- JDBC / Spring JDBC  
+- Maven  
 
-[ Botão: Ver Dashboard Completo ]  [ Botão: Acionar Suporte N2 ]
-*/
+## 📊 Funcionalidades
+- Níveis de log: `info`, `warn`, `error`, `fatal`  
+- Persistência dos eventos em banco de dados  
+- Integração simples com outras aplicações MoveOn  
+
+## ▶️ Execução
+```bash
+mvn clean package
+java -jar target/moveon-log-1.0-SNAPSHOT.jar
+```
+
+## 👥 Contribuição
+Fork, branch, melhorias e pull request.
